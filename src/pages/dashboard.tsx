@@ -1,5 +1,7 @@
 import { CONFIG } from 'src/config-global';
 
+import { OverviewAnalyticsView as DashboardView } from '../sections/overview/view';
+
 // ----------------------------------------------------------------------
 
 export default function Page() {
@@ -12,8 +14,7 @@ export default function Page() {
       />
       <meta name="keywords" content="react,material,kit,application,dashboard,admin,template" />
 
-      
+      <DashboardView />
     </>
   );
 }
-  
