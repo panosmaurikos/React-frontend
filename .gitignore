@@ -36,3 +36,7 @@ build
 tsconfig.tsbuildinfo
 .ncurc.js
 knip.jsonc
+
+# Android keystore files
+myapp.keystore
+myapp.keystore.txt
