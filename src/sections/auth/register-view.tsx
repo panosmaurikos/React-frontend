@@ -20,7 +20,6 @@ const steps = [
   'Confirmation',
 ];
 
-// Validators
 function isValidEmail(email: string) {
   return /\S+@\S+\.\S+/.test(email);
 }
@@ -69,31 +68,17 @@ export function RegisterView() {
     [form, isFormValid, router]
   );
 
-  // Padding for header/footer offsets
+  // Header/Footer offset
   const HEADER_HEIGHT = 72;
   const FOOTER_HEIGHT = 84;
 
   return (
     <>
-      {/* Header */}
-      <Box
-        sx={{
-          position: 'sticky',
-          top: 0,
-          left: 0,
-          right: 0,
-          bgcolor: 'background.default',
-          zIndex: 1200,
-          px: 2,
-          pt: 2,
-          pb: 1,
-        }}
-      >
-        <ProcessBar steps={steps} activeStep={activeStep} />
-      </Box>
+      {/* Process Bar at the top */}
+      <ProcessBar steps={steps} activeStep={activeStep} />
 
       {/* Main Registration Form */}
-      <Box sx={{ pt: `${HEADER_HEIGHT + 8}px`, pb: `${FOOTER_HEIGHT + 8}px` }}>
+      <Box sx={{ pt: `${HEADER_HEIGHT + 16}px`, pb: `${FOOTER_HEIGHT + 8}px` }}>
         <Box
           sx={{
             gap: 1.5,
