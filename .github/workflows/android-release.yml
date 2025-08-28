@@ -1,0 +1,43 @@
+name: Android Release Build - React + Ionic
+
+on:
+  push:
+    tags:
+      - 'v*'  
+
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build React
+        run: npm run build
+
+      - name: Prepare Keystore
+        run: |
+          echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > myapp.keystore
+
+      - name: Build Signed APK
+        run: |
+          npx cap sync android
+          cd android
+          ./gradlew assembleRelease \
+            -Pandroid.injected.signing.store.file=../myapp.keystore \
+            -Pandroid.injected.signing.store.password=${{ secrets.ANDROID_KEYSTORE_PASSWORD }} \
+            -Pandroid.injected.signing.key.alias=${{ secrets.ANDROID_KEY_ALIAS }} \
+            -Pandroid.injected.signing.key.password=${{ secrets.ANDROID_KEY_PASSWORD }}
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-release.apk
+          path: android/app/build/outputs/apk/release/app-release.apk
