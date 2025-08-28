@@ -16,6 +16,7 @@ export const UserPage = lazy(() => import('src/pages/user'));
 export const SignInPage = lazy(() => import('src/pages/sign-in'));
 export const ProductsPage = lazy(() => import('src/pages/products'));
 export const Page404 = lazy(() => import('src/pages/page-not-found'));
+export const RegisterView = lazy(() => import('src/pages/register'));
 
 const renderFallback = () => (
   <Box
@@ -100,6 +101,16 @@ const Page404Wrapper = () => (
   </IonPage>
 );
 
+const RegisterPageWrapper = () => (
+  <IonPage>
+    <IonContent>
+      <AuthLayout>
+        <RegisterView />
+      </AuthLayout>
+    </IonContent>
+  </IonPage>
+);
+
 export const routesSection = (
   <IonRouterOutlet>
     <Suspense fallback={renderFallback()}>
@@ -110,7 +121,7 @@ export const routesSection = (
         <Route path="/products" component={ProductsPageWrapper} />
         <Route path="/blog" component={BlogPageWrapper} />
         <Route path="/sign-in" component={SignInPageWrapper} />
-        <Route path="/register" component={SignInPageWrapper} />
+        <Route path="/register" component={RegisterPageWrapper} />
         <Route path="/404" component={Page404Wrapper} />
         <Route path="*" component={Page404Wrapper} />
       </Switch>
