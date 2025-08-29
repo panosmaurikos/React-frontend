@@ -16,15 +16,20 @@ jobs:
         with:
           node-version: 22
 
-      - name: Install dependencies
-        run: npm install
-      
-      - name: Install Capacitor
-        run: npm install @capacitor/core @capacitor/cli @capacitor/android --save-dev
-
+      - name: Install Capacitor packages
+        run: npm install @capacitor/core @capacitor/android @capacitor/cli --save-dev
 
       - name: Build React
         run: npm run build
+
+      - name: Add Android platform
+        run: npx cap add android
+
+      - name: Sync Capacitor
+        run: npx cap sync android
+
+      - name: Give gradlew execute permissions
+        run: chmod +x android/gradlew
 
       - name: Prepare Keystore
         run: |
