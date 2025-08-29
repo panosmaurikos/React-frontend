@@ -20,7 +20,8 @@ jobs:
         run: npm install
       
       - name: Install Capacitor
-        run: npm install @capacitor/core @capacitor/cli @capacitor/android
+        run: npm install @capacitor/core @capacitor/cli @capacitor/android --save-dev
+
 
       - name: Build React
         run: npm run build
