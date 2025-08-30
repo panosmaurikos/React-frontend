@@ -48,6 +48,9 @@ jobs:
         run: |
           echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > myapp.keystore
 
+      - name: Give gradlew execute permissions
+        run: chmod +x ./android/gradlew
+
       - name: Build Signed APK
         run: |
           npx cap sync android
