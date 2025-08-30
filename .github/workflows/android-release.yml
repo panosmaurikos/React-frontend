@@ -27,6 +27,10 @@ jobs:
 
       - name: Install Capacitor packages
         run: npm install @capacitor/core @capacitor/android @capacitor/cli --save-dev
+      
+
+      - name: Add Android platform
+        run: npx cap add android || echo "Android platform already added"
 
       - name: Build React
         run: npm run build
