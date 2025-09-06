@@ -42,7 +42,10 @@ export function ProcessBar({
           // expose vars so overrides are easy
           '--circle-size': `${circleSize}px`,
           '--circle-radius': circleRadius,
-          py: compact ? 1 : 2,
+          // increase vertical padding on small screens so the bar is not too close to the form
+          py: compact ? 2 : 3,
+          // add extra bottom margin on compact/mobile to push following content down
+          mb: compact ? 3 : 0,
         },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
@@ -54,7 +57,8 @@ export function ProcessBar({
           left: 'calc(var(--circle-size) / 2)',
           right: 'calc(var(--circle-size) / 2)',
           // align track center with circle centers taking container padding (py) into account
-          top: `calc(${theme.spacing(compact ? 1 : 2)} + (var(--circle-size) / 2))`,
+          // use the same spacing values as `py` above
+          top: `calc(${theme.spacing(compact ? 2 : 3)} + (var(--circle-size) / 2))`,
           transform: 'translateY(-50%)',
           height: 4,
           bgcolor: theme.vars.palette.divider,

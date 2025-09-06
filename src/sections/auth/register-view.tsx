@@ -197,7 +197,7 @@ export function RegisterView() {
         )}
       </Box>
 
-      {/* Social Login - Μειωμένος χώρος */}
+      {/*  Login */}
       <Box sx={{ flexShrink: 0, mt: 'auto' }}>
         <Divider sx={{ my: 1.5, '&::before, &::after': { borderTopStyle: 'dashed' } }}>
           <Typography variant="overline" sx={{ color: 'text.secondary', fontWeight: 'fontWeightMedium', fontSize: '0.75rem' }}>
